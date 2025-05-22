@@ -10,8 +10,6 @@
 #include "data.h"
 #include "maze.h"
 
-const int FPS = 6000;
-const int frameDelay = 1000 / FPS;
 std::vector<Bullet> bullets;
 
 void shoot(Tank& tank) {
@@ -117,8 +115,6 @@ int main(int argc, char* argv[]) {
         }
 
         SDL_RenderPresent(renderer);
-        Uint32 frameTime = SDL_GetTicks() - frameStart;
-        if (frameTime < frameDelay) SDL_Delay(frameDelay - frameTime);
     }
 
     SDL_DestroyRenderer(renderer);
