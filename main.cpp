@@ -10,10 +10,10 @@
 #include "data.h"
 #include "maze.h"
 
-// Danh sách đạn
+const int FPS = 6000;
+const int frameDelay = 1000 / FPS;
 std::vector<Bullet> bullets;
 
-// Hàm bắn đạn
 void shoot(Tank& tank) {
     if (tank.cooldown <= 0) {
         float bulletX = tank.x + cos(tank.angle * M_PI / 180.0) * (tank.rect.w / 2 + 20);
@@ -117,6 +117,8 @@ int main(int argc, char* argv[]) {
         }
 
         SDL_RenderPresent(renderer);
+        Uint32 frameTime = SDL_GetTicks() - frameStart;
+        if (frameTime < frameDelay) SDL_Delay(frameDelay - frameTime);
     }
 
     SDL_DestroyRenderer(renderer);
